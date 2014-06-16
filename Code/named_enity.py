@@ -29,7 +29,7 @@ chunked.append(chunked_sent)
 
 #introducing the sentiment
 #negation
-
+'''
 regexp_not = "(?:^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$)|n't"
 regexp_clause = "^[.:;!?]$"
 
@@ -51,8 +51,21 @@ print chunked
 
 #from pprint import pprint
 #pprint(chunked)
-
+'''
 #dependency tree 
+from pprint import pprint
+
+try:
+    from nltk import Tree
+    
+    def nltk_tree(t):
+        return Tree(t[0], [c if isinstance(c, basestring) else nltk_tree(c) for c in t[1:]])
+    
+    nltk_is_available = True
+
+except ImportError:
+    nltk_is_available = False
+
 from collections import defaultdict
 
 def argmax(lst):
@@ -105,15 +118,15 @@ def CKY(pcfg, norm_words):
     _, top = max([(pi[1, n, X], bp[1, n, X]) for X in pcfg.N])
     return backtrace(top, bp)
 
- class Parser:
+class Parser:
     def __init__(self, pcfg=None):
         if pcfg is None:
             pcfg = build_model()
         
         self.pcfg = pcfg
 
-     def norm_parse(self, sentence):
-        words = self.tokenizer.tokenize(sentence)
+    def norm_parse(self, sentence):
+        words = chunked;
         if is_cap_word(words[0]):
             words[0] = words[0].lower()
         
@@ -127,6 +140,17 @@ def CKY(pcfg, norm_words):
                 norm_words.append((self.pcfg.norm_word(word), word))
         return CKY(self.pcfg, norm_words)        
 
+    def raw_parse(self, sentence):
+        tree = self.norm_parse(sentence)
+        un_chomsky_normal_form(tree)
+        return tree
+
+    def display_tree(tree):
+        if nltk_is_available:
+            tree.draw()
+        else:
+            pprint(tree)
+   
 
          
 #output - array  - <(extracting NP) , (adjectives)>

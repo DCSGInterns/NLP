@@ -17,7 +17,7 @@ which our sentence tokenizer would fail -
 '''
  
 
-def classifier():
+def classifier(para):
         import nltk
         
         from nltk.tokenize.punkt import PunktSentenceTokenizer, PunktParameters
@@ -52,7 +52,7 @@ def classifier():
                 word_result = word_tokenizer.tokenize(sent)
                 data_store.append(word_result)
     
-        print data_store
+        #print data_store
 	#return data_store
 
         '''
@@ -63,22 +63,19 @@ def classifier():
         
         from nltk.corpus import stopwords
         english_stops = set(stopwords.words('english'))
-
+        '''
         word_store=[];
         sent_store=[];
-        
         for sent in data_store:
-                for word in sent:
-                        if word not in english_stops:
-                                word_store.append(word)
-                word_store=nltk.pos_tag(word_store)
+                word_store=nltk.pos_tag(sent)
                 sent_store.append(word_store)
                 word_store=[]
 
-        print sent_store
-        '''
+        #print sent_store
+        return sent_store
         
-classifier()
+        
+classifier(para)
 
 ''' ISSUES WITH SENTENCE TOKENIZER
 ** Cannot recognize bullet types eg, 1. Sm text, 2. Some text (Mr. Mrs. Dr. Prof.)  - ITS POSSIBLE TO TRAIN
