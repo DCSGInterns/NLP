@@ -88,11 +88,13 @@ class Parser:
             self.parse = self.raw_parse
     
     def norm_parse(self, paragraph):
-        sentence = self.tokenizer.tokenize(paragraph)
+        para = self.tokenizer.tokenize(paragraph)
+        #print para
         tree_list = []
-        for words in sentence:        
+       
+        for sentence in para:        
             norm_words = []
-            for word in words:
+            for word in sentence:
                 if isinstance(word, tuple):
                     # This is already a word normalized to the Treebank conventions
                     norm_words.append(word)
@@ -100,19 +102,26 @@ class Parser:
                     #print word
                     # rare words normalization
                     norm_words.append((self.pcfg.norm_word(word), word))
-
+                #print norm_words
+            #print "end of sentence"    
             tree_list.append(CKY(self.pcfg, norm_words))
+        
         return tree_list    
     
     def raw_parse(self, sentence):
         tree = self.norm_parse(sentence)
-        #print tree
-        un_chomsky_normal_form(tree)
-        return tree
+        tree_list = []
+        for sent in tree:
+            un_chomsky_normal_form(sent)
+            tree_list.append(sent)
+            
+            #print tree[0]
+        return tree_list
     
     def nltk_parse(self, sentence):
-        return nltk_tree(self.raw_parse(sentence))
-
+        tree = self.raw_parse(sentence)
+        #print tree
+        return tree
 
 def display_tree(tree):
     if nltk_is_available:
