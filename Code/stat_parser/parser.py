@@ -40,7 +40,7 @@ def backtrace(back, bp):
 
 def CKY(pcfg, norm_words):
     x, n = [("", "")] + norm_words, len(norm_words)
-   
+    
     # Charts
     pi = defaultdict(float)
     bp = defaultdict(tuple)
@@ -49,8 +49,9 @@ def CKY(pcfg, norm_words):
             norm, word = x[i]
             if (X, norm) in pcfg.q1:
                 pi[i, i, X] = pcfg.q1[X, norm]
+
                 bp[i, i, X] = (X, word, i, i)
-    
+        
     # Dynamic program
     for l in range(1, n):
         for i in range(1, n-l+1):
@@ -58,6 +59,7 @@ def CKY(pcfg, norm_words):
             for X in pcfg.N:
                 # Note that we only check rules that exist in training
                 # and have non-zero probability
+
                 score, back = argmax([(
                         pcfg.q2[X, Y, Z] * pi[i, s, Y] * pi[s+1, j, Z],
                         (X, Y, Z, i, s, j)
@@ -66,11 +68,11 @@ def CKY(pcfg, norm_words):
                             if pi[i  , s, Y] > 0.0
                             if pi[s+1, j, Z] > 0.0
                 ])
-                
                 if score > 0.0:
                     bp[i, j, X], pi[i, j, X] = back, score
     
     _, top = max([(pi[1, n, X], bp[1, n, X]) for X in pcfg.N])
+
     return backtrace(top, bp)
 
 
@@ -103,7 +105,8 @@ class Parser:
                     # rare words normalization
                     norm_words.append((self.pcfg.norm_word(word), word))
                 #print norm_words
-            #print "end of sentence"    
+            #print "end of sentence" 
+
             tree_list.append(CKY(self.pcfg, norm_words))
         
         return tree_list    

@@ -1,8 +1,17 @@
-'''NOTE: All these manage sentences ..We have to manage clauses and this is highly non-optimized ..
-Tagging does not work properly ...Tokenizer  -> make clauses and phrases in seperate arrays ''' 
+'''NOTE: All these manage sentences .. this is highly non-optimized ..Relating np to vp what refers to what ...use anaphora from nltk then u have to search for sentiment for those words only.
+the inputs are two files, word file and data file... attach the sentiment'''
+
+'''Apply conjuction rules given in the paper - bookmarked'''
+
+#input - paragraph 
+#output- sentences in those paragraphs which contains the word whose sentiment has to found
+#steps : tagging tokenizing chunkung parsing, now I have the phrase find out whether that word is present ...sent the array to sentiment_finding.py  ... now find the objective score of the sentence 
+# sent the objective score to a bigger file ... count over there ...
+ 
+
 import nltk
 
-test_sentence = '''Sibi Malayil, whose movies although good, is a horrible person.''' 
+test_sentence = '''Google has best customer service.'''
 
 
 #Tokenizing , Tagging and Parsing 
@@ -11,8 +20,7 @@ parser = Parser()
 chunked = parser.parse(test_sentence)
 #print chunked
 
-'''for chunk in chunked:
-    #print chunk '''
+
 '''
 #introducing the sentiment and priority - #have to make changes
 #negation - not working  
@@ -36,6 +44,7 @@ for chunked_sent in chunked:
         
 print chunked   
 '''
+
         
 #output - array  - <(extracting NP) , (adjectives)>
 #Trying to make a list of matching words ... Pretty lame function -> have to try improving it using regular expression
@@ -96,6 +105,25 @@ re_np = 'NOUN'
 re_adjp = 'ADJ'
 re_verb = 'VERB'
 Total_Array = []
+
+def differentiate_clauses(chunked_sent):
+    if(chunked_sent[0] == 'S'):
+        return [chunked_sent];
+    else:
+        return [chunked_sent[1], chunked_sent[2]]  
+
+
+chunked_delta = []
+for chunked_sent in chunked:
+    for part in differentiate_clauses(chunked_sent):
+        chunked_delta.append(part)
+        
+chunked = chunked_delta      
+'''
+for chunk in chunked:
+        print chunk
+print "1234"
+'''
 for chunked_sent in chunked:
     NP_array = []
     ADJ_array = []
@@ -133,5 +161,10 @@ for chunked_sent in chunked:
         count = 0
         VERB_word = dfs(chunked_sent, re_verb, done_list)  
     Total_Array.append((NP_array, ADJ_array, VERB_array))
-print Total_Array 
-    
+sentence =  Total_Array[0]
+
+import sentiment_finding
+print sentiment_finding.sentiment_finding(sentence);
+'''from nltk.sem.drt import resolve_anaphora
+print resolve_anaphora(test_sentence); '''
+
