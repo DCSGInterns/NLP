@@ -1,17 +1,21 @@
-'''NOTE: All these manage sentences .. this is highly non-optimized ..Relating np to vp what refers to what ...use anaphora from nltk then u have to search for sentiment for those words only.
-the inputs are two files, word file and data file... attach the sentiment'''
+'''NOTE: All these manage paragraph ..
+this is highly non-optimized ..
+Relating np to vp what refers to what ...
+use anaphora from nltk then u have to search for sentiment for those words only.
+'''
 
 '''Apply conjuction rules given in the paper - bookmarked'''
 
 #input - paragraph 
-#output- sentences in those paragraphs which contains the word whose sentiment has to found
-#steps : tagging tokenizing chunkung parsing, now I have the phrase find out whether that word is present ...sent the array to sentiment_finding.py  ... now find the objective score of the sentence 
+#output- sentiment score of given word
+#steps : tagging tokenizing chunkung parsing
 # sent the objective score to a bigger file ... count over there ...
+#count number of times word has come 
  
 
 import nltk
 
-test_sentence = '''Google has best customer service.'''
+test_sentence = '''Dell has best customer service.I liked a @YouTube video http:\/\/t.co\/byGg9a0yTu Dell latitude e6500 review.'''
 
 
 #Tokenizing , Tagging and Parsing 
@@ -161,10 +165,15 @@ for chunked_sent in chunked:
         count = 0
         VERB_word = dfs(chunked_sent, re_verb, done_list)  
     Total_Array.append((NP_array, ADJ_array, VERB_array))
-sentence =  Total_Array[0]
 
+#print Total_Array
 import sentiment_finding
-print sentiment_finding.sentiment_finding(sentence);
+score = 0
+
+for sentence in Total_Array:
+    score = score + sentiment_finding.sentiment_finding(*sentence);
+    
+print score
 '''from nltk.sem.drt import resolve_anaphora
 print resolve_anaphora(test_sentence); '''
 

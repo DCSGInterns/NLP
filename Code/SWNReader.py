@@ -26,22 +26,29 @@ def get_gloss(cols):
 def get_scores(filepath, word):
 
     f = open(filepath)
+    value = 0
+    count = 0
     for line in f:
         if not line.startswith("#"):
             cols = split_line(line)
             words = get_words(cols)
 
+            
             if word in words:
-                print("For given word {0} - {1}".format(word, get_gloss(cols)))
-                print("P Score: {0}".format(get_positive(cols)))
-                print("N Score: {0}".format(get_negative(cols)))
-                print("O Score: {0}\n".format(get_objective(cols)))
+                #print("For given word {0} - {1}".format(word, get_gloss(cols)))
+                #print("P Score: {0}".format(get_positive(cols)))
+                #print("N Score: {0}".format(get_negative(cols)))
+                #print("O Score: {0}\n".format(get_objective(cols)))
+                count += 1
+                
+                value = value + float(get_positive(cols)) - float(get_negative(cols));
+
+    if(count == 0):
+            return 0
+    else:
+            return value/count     
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 2:
-        print("USAGE: {0} <path to SentiWordNet>".format(sys.argv[0]))
-        exit(1)
-
     word = input("Enter a word: ")
-    get_scores(sys.argv[1], word.lower())
+    get_scores("SentiWordNet.txt", word.lower())
