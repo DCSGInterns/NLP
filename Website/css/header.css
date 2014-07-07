@@ -1,0 +1,49 @@
+body
+{
+ margin : 0px;
+ padding : 0px;
+ min-width : 1000px;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src : url(opensans.woff);
+}
+
+#header_wrapper
+{
+ background-color : black;
+ color : white;
+ font-family: 'Open Sans', sans-serif;
+ min-width : 1000px;
+}
+#header
+{
+ width : 90%;
+ margin : 0px auto;
+}
+#header>.row>div
+{
+padding : 20px 0px 5px 0px;
+text-align: center;
+font-size: 15px;
+}
+#header>.row>#title
+{
+text-align : right;
+font-size : 30px;
+padding : 8px 0px 5px 0px;
+}
+#dell_logo
+{
+ height : 10%;
+ width : 10%;
+}
+a,a:hover {
+ color: white;
+ text-decoration: none
+}
+a:visited {
+ color: white;
+}

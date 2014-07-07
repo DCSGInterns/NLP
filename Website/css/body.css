@@ -1,0 +1,37 @@
+#phrases
+{
+ width : 98%;
+ position : relative;
+ margin-top : 10px;
+}
+#phrases>.row> div, #phrases>div>.row> div
+{
+ padding : 2%;
+ margin : 5px;
+ box-shadow : 1px 1px 10px black;
+ text-align : center;
+ cursor : pointer;
+}
+#phrase_ctrl {
+margin: 10px 0px 20px 0px;
+}
+
+#phrases>#phrase_ctrl>div
+{
+margin: 5px;
+padding: 1%;
+position : relative;
+left : 12%;
+cursor : pointer;
+color:white;
+font-weight:bold;
+}
+#phrases>.row>#most_freq		{background-color : #66C266;}
+#phrases>.row>#least_freq		{background-color : #FFB84D;}
+#phrases>.row>#most_pos		{background-color : #66C266;}
+#phrases>.row>#most_neg		{background-color : #FFB84D;}
+
+
+#tweet_content {
+ font-size: 17px;
+}

@@ -1,0 +1,1 @@
+[{"count": 5, "noun": "dell", "sentiment": -0.23125}]

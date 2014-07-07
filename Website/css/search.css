@@ -1,0 +1,22 @@
+#search_panel, #answer_panel {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+}
+#content_wrapper_search {
+    width: 300px;
+    margin: 20px auto; 
+}
+#search_box, #data_box {
+ margin : 10px;
+}
+#answer_panel
+{
+    margin: 10px;
+    padding: 10px;
+    margin-top : 50px;
+}
+#content_wrapper_answer {
+    width: 1000px;
+    margin: 20px auto; 
+}
+
