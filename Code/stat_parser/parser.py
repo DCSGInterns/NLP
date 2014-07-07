@@ -2,6 +2,9 @@
 CKY algorithm from the "Natural Language Processing" course by Michael Collins
 https://class.coursera.org/nlangp-001/class
 """
+
+#introduce the prority
+
 from collections import defaultdict
 from pprint import pprint
 
@@ -75,6 +78,32 @@ def CKY(pcfg, norm_words):
 
     return backtrace(top, bp)
 
+def negation(chunked):
+    regexp_not = "(?:^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$)|n't"
+    regexp_clause = "^[.:;!?]$"
+
+    neg_track = []
+
+    import re
+
+    for chunked_sent in chunked:
+        neg_sent = []
+        flag = 1;
+        for chunk in chunked_sent:
+            word = chunk
+            t = flag;
+            if t==0:
+                t = -1
+            if word.isupper():
+                t = t*2
+                word = word.lower()    
+            neg_sent.append((word , t))
+            if re.search(regexp_not, word): #some problem here
+                flag = (flag + 1) % 2;
+               
+        neg_track.append(neg_sent)
+    #print neg_track
+    return neg_track 
 
 class Parser:
     def __init__(self, pcfg=None):
@@ -91,6 +120,7 @@ class Parser:
     
     def norm_parse(self, paragraph):
         para = self.tokenizer.tokenize(paragraph)
+        array = negation(para)
         #print para
         tree_list = []
        
@@ -109,17 +139,17 @@ class Parser:
 
             tree_list.append(CKY(self.pcfg, norm_words))
         
-        return tree_list    
+        return (tree_list , array )
     
     def raw_parse(self, sentence):
         tree = self.norm_parse(sentence)
         tree_list = []
-        for sent in tree:
+        for sent in tree[0]:
             un_chomsky_normal_form(sent)
             tree_list.append(sent)
             
             #print tree[0]
-        return tree_list
+        return (tree_list , tree[1])
     
     def nltk_parse(self, sentence):
         tree = self.raw_parse(sentence)
