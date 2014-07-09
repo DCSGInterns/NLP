@@ -1,9 +1,9 @@
 def gather_input():
     import re
-    file = open("input.txt","r")
+    file = open("py_code/input.txt","r")
     input = file.read()
     file.close()
-    reg_string = ur"\"text\":\"(.+?)\""
+    reg_string = ur"\"text\":\"(.+?)[^\\]\""
     data_array=re.findall(reg_string,input)
     spam_filter(data_array)
 
@@ -18,17 +18,17 @@ def spam_filter(data_array):
     import re
     filtered_array = []
     data_str=''
-    
+    file=open("py_code/filtered.txt","w")
+
     for text in data_array:
         if re.findall(r'Price [0-9]+\.?[0-9]* ',text):
             #print text, '*************************************'
             pass
         else:
             data_str=data_str+text
-            filtered_array.append({"text":text})
+            file.write(text);
+            file.write("\n");
 
-    file=open("filtered.txt","w")
-    file.write(json.dumps(filtered_array))
     file.close()
     ########    Flitering out grammatical errors with line endings
     data_str = re.sub(r'([\.\?\!])(\w)', r'\1 \2', data_str)
@@ -73,7 +73,7 @@ def tokenize(para):
     for sentence in sentences :
         for noun in required_noun :
             if (sentence.lower().find(noun)!=-1) :
-                info_tuple=[noun,sentence]
+                info_tuple=[noun,sentence.lower()]
                 #print sentence
                 #print noun
                 #print info_tuple
@@ -87,15 +87,8 @@ def tokenize(para):
                 sentiment_str=sentiment_str+data[1]
         blob = TextBlob(sentiment_str)
         if(blob.word_counts[noun]>0):
-            json_array.append({"noun": noun, "sentiment": blob.sentiment.polarity, "count":blob.word_counts[noun]})
-        #print json.dumps(json_array)
-
-    file=open('data.txt','w')
-    file.write(json.dumps(json_array))
-    file.close()
-
-    return json.dumps(json_array)
-    #noun_phrase(para)
+            json_array.append({"noun": noun, "sentiment": int(blob.sentiment.polarity*1000)/1000.0, "count":blob.word_counts[noun]})
+    print(json.dumps(json_array))
         
 def noun_phrase(para):
     from textblob import TextBlob

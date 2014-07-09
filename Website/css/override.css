@@ -12,5 +12,15 @@
  margin: 10px 0px;
 }
 #phrases > #phrase_ctrl > div {
- left: 25%;
+ left: 20%;
+}
+#phrases>#phrase_ctrl>#data_box {
+ color:black;
+ left: 22%;
+ box-shadow: none;
+}
+#phrases > #tweets {
+ color : white;
+ font-size: 16px;
+ font-weight: bold;
 }

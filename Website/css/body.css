@@ -8,7 +8,7 @@
 {
  padding : 2%;
  margin : 5px;
- box-shadow : 1px 1px 10px black;
+ box-shadow : 1px 1px 5px black;
  text-align : center;
  cursor : pointer;
 }
@@ -21,17 +21,26 @@ margin: 10px 0px 20px 0px;
 margin: 5px;
 padding: 1%;
 position : relative;
-left : 12%;
+left : 5%;
 cursor : pointer;
 color:white;
 font-weight:bold;
 }
 #phrases>.row>#most_freq		{background-color : #66C266;}
-#phrases>.row>#least_freq		{background-color : #FFB84D;}
+#phrases>.row>#least_freq		{background-color :#FF3333;#FFB84D;}
 #phrases>.row>#most_pos		{background-color : #66C266;}
-#phrases>.row>#most_neg		{background-color : #FFB84D;}
+#phrases>.row>#most_neg		{background-color : #FF3333;#FFB84D;}
 
 
 #tweet_content {
+font-family: 'Open Sans';
  font-size: 17px;
+ color: white;
+ font-weight: bold;
+}
+
+#phrases>#phrase_ctrl>#data_box {
+ color:black;
+ left: 8%;
+ box-shadow: none;
 }

@@ -18,5 +18,12 @@
 #content_wrapper_answer {
     width: 1000px;
     margin: 20px auto; 
+    font-size: 20px;
+}
+#submit {
+ position: relative;
+ margin-top: 10px;
+ left:25%;
+ width: 100px;
 }
 
