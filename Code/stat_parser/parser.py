@@ -96,7 +96,7 @@ def negation(chunked):
                 t = -1
             if word.isupper():
                 t = t*2
-                word = word.lower()    
+            word = word.lower()    
             neg_sent.append((word , t))
             if re.search(regexp_not, word): #some problem here
                 flag = (flag + 1) % 2;
@@ -121,12 +121,21 @@ class Parser:
     def norm_parse(self, paragraph):
         para = self.tokenizer.tokenize(paragraph)
         array = negation(para)
+
         #print para
+
         tree_list = []
-       
+
+        import re
+        u_pattern = r'u[0-9]+'
+
         for sentence in para:        
             norm_words = []
             for word in sentence:
+                if word.isupper():
+                    word = word.lower()
+                if (re.match(u_pattern, word)):
+                    continue
                 if isinstance(word, tuple):
                     # This is already a word normalized to the Treebank conventions
                     norm_words.append(word)
@@ -143,12 +152,13 @@ class Parser:
     
     def raw_parse(self, sentence):
         tree = self.norm_parse(sentence)
-        tree_list = []
+        tree_list = []      
         for sent in tree[0]:
-            un_chomsky_normal_form(sent)
-            tree_list.append(sent)
-            
-            #print tree[0]
+            if type(sent) == list :
+                un_chomsky_normal_form(sent)
+                tree_list.append(sent)
+                
+                #print tree[0]
         return (tree_list , tree[1])
     
     def nltk_parse(self, sentence):

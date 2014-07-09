@@ -28,6 +28,8 @@ def match(pattern , tree):
     '''
     word = str(tree[0])
     #print word
+    
+
     if(pattern == 'NOUN'):
         if(word == 'NP' or word[0:2] == 'NN' or word == 'PP' or word == 'PP$' or word == 'PRP'):
             return 1
@@ -146,12 +148,21 @@ def phrasing(chunked):
         Total_Array.append((NP_array, ADJ_array, VERB_array))
     return Total_Array    
 
-def para_senti_score(para):
+
+
+def para_senti_score(para, senti_word):
     '''Input - Plain para
     Output - The sentiment score of that para'''
     parsed  = parsing(para);
-    Tuple_array = phrasing(parsed[0])
+    chunk = parsed[0]
     neg_array = parsed[1]
+    if (len(neg_array) == 1 and len(neg_array[0]) == 1): #1 word tweet ...They do not have any sentiment
+        return 0
+    
+    Tuple_array = phrasing(chunk)
+    
+#look at the white list get the words or which u want to find the sentiment ...send adj and verb of only those words 
+
 
     import sentiment_finding
     score = 0
