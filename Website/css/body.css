@@ -1,3 +1,19 @@
+.container {
+    width: 95%;
+    margin: 0px auto;
+}
+.row {
+    width: 95%;
+    margin: 0px auto;
+}
+
+#properties_ctrl>form>div {
+    margin:10px;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    position: relative;
+}
+
 #phrases
 {
  width : 98%;
@@ -21,7 +37,7 @@ margin: 10px 0px 20px 0px;
 margin: 5px;
 padding: 1%;
 position : relative;
-left : 5%;
+left : 3%;
 cursor : pointer;
 color:white;
 font-weight:bold;
@@ -42,5 +58,6 @@ font-family: 'Open Sans';
 #phrases>#phrase_ctrl>#data_box {
  color:black;
  left: 8%;
+ top:-20px;
  box-shadow: none;
 }

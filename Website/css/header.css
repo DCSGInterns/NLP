@@ -20,7 +20,8 @@ body
 }
 #header
 {
- width : 90%;
+ width : 100%;
+ min-width : 1000px;
  margin : 0px auto;
 }
 #header>.row>div
@@ -37,8 +38,8 @@ padding : 8px 0px 5px 0px;
 }
 #dell_logo
 {
- height : 10%;
- width : 10%;
+height: 50px;
+width: 50px;
 }
 a,a:hover {
  color: white;
@@ -46,4 +47,11 @@ a,a:hover {
 }
 a:visited {
  color: white;
+}
+#about >a>img {
+    height:28px;
+    width: 32px;
+    position: relative;
+    left: 60%;
+    top: -2px;
 }

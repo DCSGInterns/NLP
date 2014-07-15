@@ -1,0 +1,16 @@
+{"date": "20140630", "text": "@Dell @DellCares I'd assume they're the ones I'm complaining about", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares I request you look into the concern of this case.\nservice request No | 78050962357", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares Spent ages on the phone trying to amend my order i get told \"cancel it\" &amp; reorder but then told my order failed 4 days ago", "sentiment": -0.3}
+{"date": "20140629", "text": "realised why lid on my Dell vostro v131 has gone wrong - @dell didnt put screws in. many other missing screws found inside @dellcares ", "sentiment": -0.081}
+{"date": "20140630", "text": "@Dell @DellCares I'd assume they're the ones I'm complaining about", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares I request you look into the concern of this case.\nservice request No | 78050962357", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares Spent ages on the phone trying to amend my order i get told \"cancel it\" &amp; reorder but then told my order failed 4 days ago", "sentiment": -0.3}
+{"date": "20140629", "text": "realised why lid on my Dell vostro v131 has gone wrong - @dell didnt put screws in. many other missing screws found inside @dellcares ", "sentiment": -0.081}
+{"date": "20140630", "text": "@Dell @DellCares I'd assume they're the ones I'm complaining about", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares I request you look into the concern of this case.\nservice request No | 78050962357", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares Spent ages on the phone trying to amend my order i get told \"cancel it\" &amp; reorder but then told my order failed 4 days ago", "sentiment": -0.3}
+{"date": "20140629", "text": "realised why lid on my Dell vostro v131 has gone wrong - @dell didnt put screws in. many other missing screws found inside @dellcares ", "sentiment": -0.081}
+{"date": "20140630", "text": "@Dell @DellCares I'd assume they're the ones I'm complaining about", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares I request you look into the concern of this case.\nservice request No | 78050962357", "sentiment": 0.0}
+{"date": "20140630", "text": "@Dell @DellCares Spent ages on the phone trying to amend my order i get told \"cancel it\" &amp; reorder but then told my order failed 4 days ago", "sentiment": -0.3}
+{"date": "20140629", "text": "realised why lid on my Dell vostro v131 has gone wrong - @dell didnt put screws in. many other missing screws found inside @dellcares ", "sentiment": -0.081}

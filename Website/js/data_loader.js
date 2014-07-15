@@ -1,51 +1,63 @@
 var jsonObj = "";
+var jsonObj_main = "";
 
 function displayJSON(jsonObj) { 
     var x = document.getElementById("tweet_content");
     x.innerHTML = "";
     var row_content = "";
 
+    if (jsonObj.length == 0) {
+        x.innerHTML = "<div style=\"position:relative;top:50px;width:200px;margin:0px auto;font-family:'Open Sans';color:grey\"> No Results to display </div>";
+        return;
+    }
+
     for (i = 0; i < Math.floor(jsonObj.length / 4); i++) {
         row_content = "";
         for (j = 0; j < 3; j++) {
+
+            javascript = "onclick=\"redirect(\'"+jsonObj[i * 4 + j].noun+"\')\"";
             if(jsonObj[i * 4 + j].sentiment < -0.5)
                 style = "style=\"background-color:#FF3333;\"";
-            else if(jsonObj[i * 4 + j].sentiment > -0.5 && jsonObj[i * 4 + j].sentiment<0.0)
+            else if(jsonObj[i * 4 + j].sentiment >= -0.5 && jsonObj[i * 4 + j].sentiment< 0.0)
                 style = "style=\"background-color:#FFB84D;\"";
-            else if(jsonObj[i * 4 + j].sentiment > 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
-                style = "style=\"background-color:#8AE62E\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
+                style = "style=\"background-color:#8AE62E;\"";
             else
                 style = "style=\"background-color:#66C266;\"";
 
-            row_content = row_content + "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\"" +style+">" + jsonObj[i * 4 + j].noun + "<br/>" + jsonObj[i * 4 + j].sentiment + "<br/>" + jsonObj[i * 4 + j].count + "</div>"
+            row_content = row_content + "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\"" +style+javascript+">" + jsonObj[i * 4 + j].noun + "<br/>S : " + jsonObj[i * 4 + j].sentiment + "<br/>C : " + jsonObj[i * 4 + j].count + "</div>"
         }
         if(jsonObj[i * 4 + j].sentiment < -0.5)
                 style = "style=\"background-color:#FF3333;\"";
-            else if(jsonObj[i * 4 + j].sentiment > -0.5 && jsonObj[i * 4 + j].sentiment<0.0)
+            else if(jsonObj[i * 4 + j].sentiment >= -0.5 && jsonObj[i * 4 + j].sentiment< 0.0)
                 style = "style=\"background-color:#FFB84D;\"";
-            else if(jsonObj[i * 4 + j].sentiment > 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
-                style = "style=\"background-color:#8AE62E\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
+                style = "style=\"background-color:#8AE62E;\"";
             else
                 style = "style=\"background-color:#66C266;\"";
 
+        javascript = "onclick=\"redirect(\'"+jsonObj[i * 4 + j].noun+"\')\"";
 
-        row_content = row_content + "<div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\"" +style+">" + jsonObj[i * 4 + j].noun + "<br/>" + jsonObj[i * 4 + j].sentiment + "<br/>" + jsonObj[i * 4 + j].count + "</div>"
+        row_content = row_content + "<div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\"" +style+javascript+">" + jsonObj[i * 4 + j].noun + "<br/>S : " + jsonObj[i * 4 + j].sentiment + "<br/>C : " + jsonObj[i * 4 + j].count + "</div>"
         row_content = "<div class=\"row\">" + row_content + "</div>"
         x.innerHTML = x.innerHTML + row_content;
     }
     row_content = "";
     for (j = 0; j < jsonObj.length % 4; j++) {
+
+        javascript = "onclick=\"redirect(\'"+jsonObj[i * 4 + j].noun+"\')\"";
+
         if(jsonObj[i * 4 + j].sentiment < -0.5)
                 style = "style=\"background-color:#FF3333;\"";
-            else if(jsonObj[i * 4 + j].sentiment > -0.5 && jsonObj[i * 4 + j].sentiment<0.0)
+            else if(jsonObj[i * 4 + j].sentiment >= -0.5 && jsonObj[i * 4 + j].sentiment< 0.0)
                 style = "style=\"background-color:#FFB84D;\"";
-            else if(jsonObj[i * 4 + j].sentiment > 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
-                style = "style=\"background-color:#8AE62E\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
+                style = "style=\"background-color:#8AE62E;\"";
             else
                 style = "style=\"background-color:#66C266;\"";
 
 
-        row_content = row_content + "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\"" +style+">" + jsonObj[i * 4 + j].noun + "<br/>" + jsonObj[i * 4 + j].sentiment + "<br/>" + jsonObj[i * 4 + j].count + "</div>"
+        row_content = row_content + "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\"" +style+javascript+">" + jsonObj[i * 4 + j].noun + "<br/>S : " + jsonObj[i * 4 + j].sentiment + "<br/>C : " + jsonObj[i * 4 + j].count + "</div>"
     }
     row_content = "<div class=\"row\">" + row_content + "</div>"
     x.innerHTML = x.innerHTML + row_content;
@@ -144,7 +156,7 @@ function sort_descending_sentiment(jsonObj)
 function loadJSON(){
     var x = document.getElementById("tweet_content");
     x.innerHTML = "<img src=\"img/loading.gif\" style=\"width:600px;position:relative;left:30%;\">";
-    var data_file = "python_caller.php";
+    var data_file = "scrapper/python_caller.php";
     var http_request = new XMLHttpRequest();
     try
     {
@@ -175,8 +187,9 @@ function loadJSON(){
     http_request.onreadystatechange = function () {
         if (http_request.readyState == 4) {
             // Javascript function JSON.parse to parse JSON data
-            window.jsonObj = JSON.parse(http_request.responseText);
-               displayJSON(jsonObj);
+            window.jsonObj_main = JSON.parse(http_request.responseText);
+            window.jsonObj = jsonObj_main;
+            displayJSON(jsonObj);
         }
 
     }
@@ -185,3 +198,55 @@ function loadJSON(){
 
    
 }
+
+
+function filter_byDate_JSON(){
+    var date_diff = document.forms["myForm"]["data_of"].value;
+    var param = "date_diff="+date_diff;
+
+    var x = document.getElementById("tweet_content");
+
+    x.innerHTML = "<img src=\"img/loading.gif\" style=\"width:600px;position:relative;left:30%;\">";
+    var data_file = "scrapper/filter.php";
+    var http_request = new XMLHttpRequest();
+    try
+    {
+        // Opera 8.0+, Firefox, Chrome, Safari
+        http_request= new XMLHttpRequest();
+    }
+    catch(e)
+    {
+    // Internet Explorer Browsers
+        try
+        {
+            http_request= new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                http_request= new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch(e)
+            {
+                // Something went wrong
+                return false;
+            }
+        }
+    }
+
+    http_request.onreadystatechange = function () {
+        if (http_request.readyState == 4) {
+            // Javascript function JSON.parse to parse JSON data
+            window.jsonObj_main = JSON.parse(http_request.responseText);
+            window.jsonObj = jsonObj_main;
+               displayJSON(jsonObj);
+        }
+
+    }
+    http_request.open("GET",data_file+"?"+param,true);
+    http_request.send();
+
+   
+}
+

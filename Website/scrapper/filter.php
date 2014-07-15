@@ -1,5 +1,7 @@
 <?php
-$command = "python py_code/sentiment.py 2>&1";
+//exec("TwitConsole.exe");
+$argument = $_GET["date_diff"];
+$command = "python ../py_code/sentiment.py ".$argument." 2>&1";
 $pid = popen( $command,"r");
 $jsonObj = "";
 while( !feof( $pid ) )  {

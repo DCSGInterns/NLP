@@ -8,19 +8,14 @@
 }
 #phrases > div > .row:nth-child(2n) {
  position: relative;
- left: 2%;
+ left: 5%;
  margin: 10px 0px;
 }
 #phrases > #phrase_ctrl > div {
- left: 20%;
-}
-#phrases>#phrase_ctrl>#data_box {
- color:black;
- left: 22%;
- box-shadow: none;
+ left: 25%;
 }
 #phrases > #tweets {
  color : white;
- font-size: 16px;
- font-weight: bold;
+ font-size: 17px;
+ font-family: 'Open Sans';
 }

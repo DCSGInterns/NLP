@@ -1,16 +1,23 @@
-var jsonObj;
+var jsonObj = "";
+var jsonObj_main = "";
 
 function displayJSON(jsonObj)
 {
     var x = document.getElementById("tweets");
     x.innerHTML = "";
+
+    if (jsonObj.length == 0) {
+        x.innerHTML = "<div style=\"position:relative;top:50px;width:200px;margin:0px auto;font-family:'Open Sans';color:grey\"> No Results to display </div>";
+        return;
+    }
+
     for (i = 0; i < jsonObj.length; i++) {
-        if (jsonObj[i].sentiment <= -0.5)
+        if (jsonObj[i].sentiment < -0.5)
             style = "style=\"background-color:#FF3333;\"";
-        else if (jsonObj[i].sentiment > -0.5 && jsonObj[i].sentiment <= 0.0)
+        else if (jsonObj[i].sentiment >= -0.5 && jsonObj[i].sentiment < 0.0)
             style = "style=\"background-color:#FFB84D;\"";
-        else if (jsonObj[i].sentiment > 0.0 && jsonObj[i].sentiment <= 0.5)
-            style = "style=\"background-color:#8AE62E\"";
+        else if (jsonObj[i].sentiment >= 0.0 && jsonObj[i].sentiment < 0.5)
+            style = "style=\"background-color:#8AE62E;\"";
         else
             style = "style=\"background-color:#66C266;\"";
 
@@ -64,10 +71,10 @@ function sort_descending_sentiment(jsonObj)
     displayJSON(jsonObj);     
 }
 
-function loadJSON(){
+function loadJSON(keyword,max_sentiment_val,min_sentiment_val){
     var x = document.getElementById("tweets");
     x.innerHTML = "<img src=\"img/loading.gif\" style=\"width:600px;position:relative;left:30%;\">";
-    var data_file = "tweet_caller.php"
+    var data_file = "tweet_caller.php?keyword="+keyword+"&max_sentiment="+max_sentiment_val+"&min_sentiment="+min_sentiment_val;
     var http_request = new XMLHttpRequest();
     try
     {
@@ -97,7 +104,8 @@ function loadJSON(){
 
     http_request.onreadystatechange = function () {
         if (http_request.readyState == 4) {   // Javascript function JSON.parse to parse JSON data
-            window.jsonObj = JSON.parse(http_request.responseText);
+            window.jsonObj_main = JSON.parse(http_request.responseText);
+            window.jsonObj = window.jsonObj_main;
             displayJSON(jsonObj);
         }
     }

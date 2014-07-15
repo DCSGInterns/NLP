@@ -14,9 +14,8 @@
     <link href="css/bootstrap-select.css" rel="stylesheet" type="text/css" >
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<!-- Specific Styling -->
+    <link href="css/body.css" rel="stylesheet"  type="text/css">
 	<link href="css/search.css" rel="stylesheet"  type="text/css">
-    <script type="text/javascript" src="js/keyword_loader.js"></script>
-
     <script type="text/javascript">
         function form_validate() {
             var data_of = document.forms["myForm"]["data_of"].value;
@@ -32,28 +31,44 @@
 
 <body>
 
+    <!--Modal Information-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">How To?</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Search - </h4> <hr/>
+              <p>The search carried out is case insenstive. The "Include Data Of" includes the tweets for the number of days entered strating from today
+              and counting backwards.</p>
+              <h4>Interpreting Results - </h4> <hr/>
+              <p>The sentiment values ranges from -1.0 (most negative) to 1.0 (most positive)</p>
+              <p>The count field indicates number of occurences of the keyword.</p>
+
+              <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!--The actual page header ------------------------------------------------------------------------------------- -->
-	<?php include("inc/header.php")?>>
+	<?php include("inc/header.php")?>
 
     <!-- The page content -->
 	<div id="search_panel">
         <div id="content_wrapper_search">
             <form class="form-inline" role="form" action="#" method="post" name="myForm" onsubmit="return form_validate();">
-                <div class="form-group" id="search_box">
-                    <label>Enter KeyWord</label>
+                <div class="form-group">
+                    <label>Enter Keyword : </label>
                     <input type="text" class="form-control" name="keyword">
                 </div>
-                <div id="data_box">
-                    <label>Include Data Of</label>
-                    <select class="selectpicker" name="data_of">
-                            <option>Month</option>
-                            <option>3 Months</option>
-                            <option>6 Months</option>
-                            <option>12 Months</option>
-                            <option>ALL</option>
-                    </select>
+                <div class="form-group">
+                    <label>Include Data of : </label>
+                    <input type="number" max="180" min="0" value="180" class="form-control" name="data_of"> days
                 </div>
+                <br/>
                 <div class="form-group" id="submit">
                     <input type="Submit" class="form-control" name="submit">
                 </div>
@@ -63,10 +78,9 @@
 
    <div id="answer_panel">
         <div id="content_wrapper_answer">
-            Sentiment   <br/>
-            <span id="sentiment_content"><?php echo $matches_float[0]; ?></span><hr/>
-            Count   <br/>
-            <span id="count_content"><?php echo $matches_int[0]; ?></span><hr/>
+            Keyword : <br/> <span id="keyword_content"><?php echo $keyword; ?></span><hr/>
+            Sentiment : <br/> <span id="sentiment_content"><?php echo $matches_float[0]; ?></span><hr/>
+            Count : <br/> <span id="count_content"><?php echo $matches_int[0]; ?></span><hr/>
         </div> 
     </div>
 
