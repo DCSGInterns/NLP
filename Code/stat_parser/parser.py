@@ -78,6 +78,8 @@ def CKY(pcfg, norm_words):
 
     return backtrace(top, bp)
 
+from SWNReader import *
+
 def negation(chunked):
     regexp_not = "(?:^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$)|n't"
     regexp_clause = "^[.:;!?]$"
@@ -96,7 +98,9 @@ def negation(chunked):
                 t = -1
             if word.isupper():
                 t = t*2
-            word = word.lower()    
+                word = word.lower()
+            s = get_scores('SentiWordNet.txt',word)
+            t = s * t
             neg_sent.append((word , t))
             if re.search(regexp_not, word): #some problem here
                 flag = (flag + 1) % 2;

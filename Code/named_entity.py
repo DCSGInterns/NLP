@@ -98,9 +98,11 @@ def phrasing(chunked):
     for chunked_sent in chunked:
         for part in differentiate_clauses(chunked_sent):
             chunked_delta.append(part)
-            
+    '''       
     chunked = chunked_delta
-
+    for chunk in chunked:
+        print chunk
+    '''
 
     #re_np = r'N(N|P)(P|S)?(\+N(N|P)(P|S)?)*'
     #re_adjp = r'(ADJP)|(JJ(R|S)?)(\+(ADJP)|(JJ(R|S)?))*'
@@ -146,6 +148,8 @@ def phrasing(chunked):
             count = 0
             VERB_word = dfs(chunked_sent, re_verb, done_list)  
         Total_Array.append((NP_array, ADJ_array, VERB_array))
+  
+    #return chunked    
     return Total_Array    
 
 
@@ -155,20 +159,22 @@ def para_senti_score(para, senti_word):
     Output - The sentiment score of that para'''
     parsed  = parsing(para);
     chunk = parsed[0]
-    neg_array = parsed[1]
-    if (len(neg_array) == 1 and len(neg_array[0]) == 1): #1 word tweet ...They do not have any sentiment
+    #print chunk
+    senti_array = parsed[1]
+    #print senti_array
+    if (len(senti_array) == 1 and len(senti_array[0]) == 1): #1 word tweet ...They do not have any sentiment
         return 0
     
     Tuple_array = phrasing(chunk)
     
 #look at the white list get the words or which u want to find the sentiment ...send adj and verb of only those words 
 
-
+    
     import sentiment_finding
     score = 0
     count = 0
 
-    sentiment_finding.get_array(neg_array);
+    sentiment_finding.get_array(senti_array);
 
     for sentence in Tuple_array:
         score = score + sentiment_finding.sentiment_finding(*sentence);
@@ -176,6 +182,4 @@ def para_senti_score(para, senti_word):
     
     return score
 
-'''from nltk.sem.drt import resolve_anaphora
-print resolve_anaphora(test_sentence); '''
 

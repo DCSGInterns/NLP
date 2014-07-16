@@ -1,27 +1,5 @@
-Dell Latitude 13 Education Series (3340) http:\/\/t.co\/53CTjvwNwF
-\u3010Windows7 Pro\u3011\u3010\u65b0\u5165\u8377 7\/10\u301164\u30d3\u30c3\u30c8OS\u642d\u8f09\uff01\u7121\u7ddaLAN\u642d\u8f09\u2605\u3010\u9001\u6599\u7121\u6599\u3011DELL Latitude E64...\u4fa1\u683c\uff1a37,800\u5186\uff08\u7a0e\u8fbc\u3001\u9001\u6599\u8fbc\uff09http:\/\/t.co\/gnhghxIFJM
-Dell Latitude D830 15\
-Dell Latitude E6420 14\
-Dell Latitude D630 Laptop, 1.80 GHz, Intel Core 2 Duo, 2 GB, DVDRW http:\/\/t.co\/MmlZtlHnwB #notebook #laptop #netbook #computer
-notebook
-laptop
-netbook
-computer
-I liked a @YouTube video http:\/\/t.co\/byGg9a0yTu Dell latitude e6500 review
-Dell \u3010\u4e2d\u53e4\u30d1\u30bd\u30b3\u30f3\u3011\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3 DELL Latitude E5500 2GB... \u8a55\u4fa1 3.7 \uff77\uf8f02.53 GHz Intel Core 2 Duo \uff77\uf8f02 GB DDR2 SDRAM http:\/\/t.co\/uCtE7ve24D
-\u3010PR\u3011Latitude E5540 \u30a4\u30f3\u30c6\u30eb Core i5 \u30d7\u30ed\u30bb\u30c3\u30b5\u30fc\u642d\u8f09\u30e2\u30c7\u30eb\u2605\uffe5107,980\u5186\u2605\u30c7\u30eb\u682a\u5f0f\u4f1a\u793e http:\/\/t.co\/WNntuLlruS \u30c7\u30eb\u682a\u5f0f\u4f1a\u793e(DellJapan)\u306e\u516c\u5f0f\u30b5\u30a4\u30c8\u3002
-\u7b2c100\u4f4d19800\u5186DELL Latitude E6400 Core2DuoP8600-2.4GHz\/2GB\/160GB\n#\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3 #\u30d1\u30bd\u30b3\u30f3 #notepc #pasokon http:\/\/t.co\/NaQAH3xAsD http:\/\/t.co\/Komfw3I8rP
-\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3
-\u30d1\u30bd\u30b3\u30f3
-notepc
-pasokon
-\u7b2c1\u4f4d18999\u5186\u4e2d\u53e4\u30d1\u30bd\u30b3\u30f3 DELL Latitude D530 \u3010 \u7121\u7ddaLAN \u3011\u3010 Celeron 540 2\n#\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3 #\u30d1\u30bd\u30b3\u30f3 #notepc #pasokon http:\/\/t.co\/Fd1NFr2uGW http:\/\/t.co\/XrDpvR1FOp
-\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3
-\u30d1\u30bd\u30b3\u30f3
-notepc
-pasokon
-\u7b2c73\u4f4d26060\u5186\u30102014\u590f\u30dc\u30fc\u30ca\u30b9\u30bb\u30fc\u30eb\u3011DELL Latitude D630 C2D-2.0(\u7121\u7ddaLAN.DVD\n#\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3 #\u30d1\u30bd\u30b3\u30f3 #notepc #pasokon http:\/\/t.co\/Aye2q9IP58 http:\/\/t.co\/HcRtqDRohH
-\u30ce\u30fc\u30c8\u30d1\u30bd\u30b3\u30f3
-\u30d1\u30bd\u30b3\u30f3
-notepc
-pasokon
+{"text": "Dell is BAD ","sentiment": 2, "date": "20140629"}
+{"text": "@Dell @DellCares I'd assume they're the ones I'm complaining about","sentiment": 2, "date": "20140630"}
+{"text": "@Dell @DellCares I request you look into the concern of this case.\nservice request No | 78050962357","sentiment": 2, "date": "20140630"}
+{"text": "@Dell @DellCares Spent ages on the phone trying to amend my order i get told \"cancel it\" &amp; reorder but then told my order failed 4 days ago","sentiment": 2, "date": "20140630"}
+{"text": "@dell: Life has become much simpler using Dell products.","sentiment": 2, "date": "20140629"}
