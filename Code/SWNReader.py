@@ -24,7 +24,7 @@ def get_gloss(cols):
     return cols[5]
 
 def get_scores(filepath, word):
-
+    word = word.lower()
     f = open(filepath)
     value = 0
     count = 0

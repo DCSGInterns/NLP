@@ -78,36 +78,7 @@ def CKY(pcfg, norm_words):
 
     return backtrace(top, bp)
 
-from SWNReader import *
 
-def negation(chunked):
-    regexp_not = "(?:^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$)|n't"
-    regexp_clause = "^[.:;!?]$"
-
-    neg_track = []
-
-    import re
-
-    for chunked_sent in chunked:
-        neg_sent = []
-        flag = 1;
-        for chunk in chunked_sent:
-            word = chunk
-            t = flag;
-            if t==0:
-                t = -1
-            if word.isupper():
-                t = t*2
-                word = word.lower()
-            s = get_scores('SentiWordNet.txt',word)
-            t = s * t
-            neg_sent.append((word , t))
-            if re.search(regexp_not, word): #some problem here
-                flag = (flag + 1) % 2;
-               
-        neg_track.append(neg_sent)
-    #print neg_track
-    return neg_track 
 
 class Parser:
     def __init__(self, pcfg=None):
@@ -124,7 +95,8 @@ class Parser:
     
     def norm_parse(self, paragraph):
         para = self.tokenizer.tokenize(paragraph)
-        array = negation(para)
+        import word_sentiment
+        array = word_sentiment.negation(para)
 
         #print para
 
