@@ -1,3 +1,4 @@
+
 '''NOTE: this is highly non-optimized ..
 Relating np to vp what refers to what ...
 use anaphora from nltk then u have to search for sentiment for those words only.
@@ -152,11 +153,11 @@ def phrasing(chunked):
     #return chunked    
     return Total_Array    
 
-
+'''
 
 def para_senti_score(para, senti_word):
-    '''Input - Plain para
-    Output - The sentiment score of that para'''
+ # Input - Plain para
+  #  Output - The sentiment score of that para
     parsed  = parsing(para);
     chunk = parsed[0]
     #print chunk
@@ -181,5 +182,17 @@ def para_senti_score(para, senti_word):
         count += 1
     
     return score
+
+'''
+
+def para_senti_score(para,senti_word):
+    from stat_parser import word_sentiment
+    import sentiment_finding
+    
+    senti_array = word_sentiment.negation(para)
+    sentiment_finding.get_array(senti_array);
+    score = sentiment_finding.sentiment_finding()
+    return score
+
 
 
