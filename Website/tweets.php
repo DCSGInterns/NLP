@@ -26,18 +26,22 @@
             alert(array[3]);
             */
             var max_sentiment_val = array[2].split('&')[0];
-            var min_sentiment_val = array[3];
+            //alert(max_sentiment_val);
+            //alert(array[3].split('&')[0]);
+            var min_sentiment_val = array[3].split('&')[0];
+            var date_diff = array[4];
         }
         else {
-            keyword = 'default';
+            var keyword = 'default';
             var max_sentiment_val = 1;
             var min_sentiment_val = -1;
+            var date_diff = 180;
         }
     </script>
 
 </head>
 
-<body onload="loadJSON(keyword,max_sentiment_val,min_sentiment_val)">
+<body onload="loadJSON(keyword,max_sentiment_val,min_sentiment_val,date_diff)">
 
     <!--Modal Information-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -78,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label>Include Data of : </label>
-                    <input type="number" max="180" min="0" value="180" class="form-control" name="data_of"> days
+                    <input type="number" max="180" min="0" value="180" class="form-control" name="data_of" id="data_of"> days
                 </div>
                 <div class="form-group">
                     <input type="button" class="form-control" value="FILTER" onclick="filter_JSON();">
@@ -102,6 +106,7 @@
 <script type="text/javascript">
     document.getElementById("max_sentiment").value = max_sentiment_val;
     document.getElementById("min_sentiment").value = min_sentiment_val;
+    document.getElementById("data_of").value = date_diff;
 </script>
 </body>
 </html>

@@ -71,10 +71,10 @@ function sort_descending_sentiment(jsonObj)
     displayJSON(jsonObj);     
 }
 
-function loadJSON(keyword,max_sentiment_val,min_sentiment_val){
+function loadJSON(keyword,max_sentiment_val,min_sentiment_val,date_diff){
     var x = document.getElementById("tweets");
     x.innerHTML = "<img src=\"img/loading.gif\" style=\"width:600px;position:relative;left:30%;\">";
-    var data_file = "tweet_caller.php?keyword="+keyword+"&max_sentiment="+max_sentiment_val+"&min_sentiment="+min_sentiment_val;
+    var data_file = "tweet_caller.php?keyword="+keyword+"&max_sentiment="+max_sentiment_val+"&min_sentiment="+min_sentiment_val+"&date_diff="+date_diff;
     var http_request = new XMLHttpRequest();
     try
     {
@@ -113,3 +113,4 @@ function loadJSON(keyword,max_sentiment_val,min_sentiment_val){
     http_request.open("GET",data_file,true);
     http_request.send();
 }
+

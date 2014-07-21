@@ -1,6 +1,12 @@
 var jsonObj = "";
 var jsonObj_main = "";
 
+var sort_s_a = 0;
+var sort_s_d = 0;
+
+var sort_c_a = 0;
+var sort_c_d = 0;
+
 function displayJSON(jsonObj) { 
     var x = document.getElementById("tweet_content");
     x.innerHTML = "";
@@ -82,7 +88,12 @@ function sort_ascending_count(jsonObj)
         jsonObj[j + 1] = key;
     }
   
+    window.sort_c_a = 1;
+    window.sort_c_d = 0;
+
     displayJSON(jsonObj);
+
+   
 }
 
 function sort_descending_count(jsonObj)
@@ -103,8 +114,12 @@ function sort_descending_count(jsonObj)
         }
         jsonObj[j + 1] = key;
     }
+    window.sort_c_a = 0;
+    window.sort_c_d = 1;
 
     displayJSON(jsonObj);
+
+   
 }
 
 function sort_ascending_sentiment(jsonObj)
@@ -125,8 +140,12 @@ function sort_ascending_sentiment(jsonObj)
         }
         jsonObj[j + 1] = key;
     }
+    window.sort_s_a = 1;
+    window.sort_s_d = 0;
  
     displayJSON(jsonObj);   
+
+    
 }
 
 function sort_descending_sentiment(jsonObj)
@@ -147,16 +166,18 @@ function sort_descending_sentiment(jsonObj)
         }
         jsonObj[j + 1] = key;
     }
-  
+    window.sort_s_a = 0;
+    window.sort_s_d = 1;
+
     displayJSON(jsonObj);     
 }
 
 
 
-function loadJSON(){
+function loadJSON(value){
     var x = document.getElementById("tweet_content");
     x.innerHTML = "<img src=\"img/loading.gif\" style=\"width:600px;position:relative;left:30%;\">";
-    var data_file = "scrapper/python_caller.php";
+    var data_file = "scrapper/python_caller.php?date_diff="+value;
     var http_request = new XMLHttpRequest();
     try
     {
@@ -195,11 +216,26 @@ function loadJSON(){
     }
     http_request.open("GET",data_file,true);
     http_request.send();
-
-   
 }
 
+setInterval(function () {
+    var arg = document.forms['myForm']['data_of'].value;
 
+    loadJSON(arg);
+    filter_JSON();
+
+    if (sort_c_a == 1)
+        sort_ascending_count(jsonObj);
+    if (sort_c_d == 1)
+        sort_descending_count(jsonObj);
+    if (sort_s_a == 1)
+        sort_ascending_sentiment(jsonObj);
+    if (sort_s_d == 1)
+        sort_descending_sentiment(jsonObj);
+
+}, 600000);
+
+/*
 function filter_byDate_JSON(){
     var date_diff = document.forms["myForm"]["data_of"].value;
     var param = "date_diff="+date_diff;
@@ -247,6 +283,6 @@ function filter_byDate_JSON(){
     http_request.open("GET",data_file+"?"+param,true);
     http_request.send();
 
-   
 }
+*/
 

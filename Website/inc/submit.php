@@ -9,7 +9,7 @@ if($submit)
 {
     if($data_of && $keyword)
     {
-        $command = "python py_code/tweet_keyword.py $keyword $data_of 2>&1";
+        $command = "python py_code/word_search.py $keyword $data_of 2>&1";
         $pid = popen( $command,"r");
         $jsonObj = "";
         while( !feof( $pid ) )  {

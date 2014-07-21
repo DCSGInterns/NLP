@@ -1,5 +1,5 @@
 function filter_JSON() {
-    
+        
     var max_sentiment = document.forms["myForm"]["max_sentiment"].value;
     var min_sentiment = document.forms["myForm"]["min_sentiment"].value;
     var date_diff = document.forms["myForm"]["data_of"].value;
@@ -21,15 +21,15 @@ function filter_JSON() {
     i = 0;k = 0;
     while (i < jsonObj.length) {
         var year = parseInt(jsonObj[i].date.slice(0, 4));
-        var month = parseInt(jsonObj[i].date.slice(4, 6)) - 1;
-        var day = parseInt(jsonObj[i].date.slice(6, 8));
-
+        var month = parseInt(jsonObj[i].date.slice(5, 7))-1;
+        var day = parseInt(jsonObj[i].date.slice(8, 10));
         var json_date = new Date(year, month, day);
 
         if (jsonObj[i].sentiment >= min_sentiment && jsonObj[i].sentiment <= max_sentiment && json_date > barrier_date)
         { jsonObj_temp[k] = jsonObj[i]; k++; }
         i++;
     }
+
     jsonObj = jsonObj_temp;
     displayJSON(jsonObj);
     
