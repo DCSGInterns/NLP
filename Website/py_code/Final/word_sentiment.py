@@ -3,13 +3,16 @@ stopset = set(['all', "she'll", u'just', 'being', 'over', 'both', 'through', 'yo
 
 from SWNReader import *
 
+import os
+PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 import re
 
 regexp_clause = "[.:;!?]"
 
 def get_text_lexicon(current_word,previous_word_inc_val):
-    s = get_scores('C:\Users\kruthika_ved\Documents\GitHub\NLP\Website\py_code\Final\SentiWordNet.txt',current_word)
+    file_path = os.path.join(PACKAGE_DIR, 'SentiWordNet.txt')
+    s = get_scores(file_path ,current_word)
     t = previous_word_inc_val
     if t != 0:
         s = t*s
@@ -20,7 +23,9 @@ def get_text_lexicon(current_word,previous_word_inc_val):
 
 
 def get_inc_value(word):
-    f = open('C:\Users\kruthika_ved\Documents\GitHub\NLP\Website\py_code\Final\Incremetors.txt')
+    file_path = os.path.join(PACKAGE_DIR, 'Incremetors.txt')
+    
+    f = open(file_path)
     for line in f:
         cols = split_line(line)
         if word == cols[0]:
