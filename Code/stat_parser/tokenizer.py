@@ -29,7 +29,8 @@ class Tokenizer:
         ##this is to do tokenizing based on RE
                 from nltk.tokenize import RegexpTokenizer
 
-                emoticons = "[<>]?[:;=8][\-o\*\']?[\)\]\(\[dDpP/\:\}\{@\|]"
+                emoticons = "[o0O][<>]?[:;=8][\-o\*\']?[\)\]\(\[dDpP/\:\}\{@\|]"
+
                 real_numbers = "[+\-]?\d+[0123456789,/.:-]*%?"
                 hashtags = "\#[\w_]+[\w\'_\-]*\w+"
                 all_words = "[\w'\-_]*\w[\w'\-_]*"
@@ -66,3 +67,19 @@ class Tokenizer:
 ''' ISSUES WITH WORD TOKENIZER
 NOT SURE WHAT ALL COULD COME AS all_words - cud be possible that i missed out something >>> combination of words/numbers/symbols
 '''
+
+def word_tokenizer(sent):
+        from nltk.tokenize import RegexpTokenizer
+
+        emoticons = "[<>]?[:;=8][\-o\*\']?[\)\]\(\[dDpP/\:\}\{@\|]"
+        real_numbers = "[+\-]?\d+[0123456789,/.:-]*%?"
+        hashtags = "\#[\w_]+[\w\'_\-]*\w+"
+        all_words = "[\w'\-_]*\w[\w'\-_]*"
+        line_endings = "[.:;,!?]+"
+
+        reg_string = emoticons+"|"+real_numbers+"|"+hashtags+"|"+all_words+"|"+line_endings
+        word_tokenizer = RegexpTokenizer(reg_string)
+
+        word_result = word_tokenizer.tokenize(sent)
+
+        return word_result

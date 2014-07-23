@@ -61,14 +61,17 @@ def sentiment_finding(noun , adjective, verb):
 
         return score
 '''
+# Normalization is done using purity - http://www.ryanmcd.com/papers/local_service_summ.pdf
 
-def sentiment_finding():
-        score = 0
-        for sent in senti_array:
-                for part in sent:
-                        score = score + part[1]
-                        #print score
-
-        return score
-
+def sentiment_finding(text_count):
+        raw_score = 0
+        absolute_score = 0 
         
+        for part in senti_array:
+                raw_score = raw_score + part[1]
+                absolute_score = absolute_score + abs(part[1])
+        
+        if absolute_score != 0 :
+                purity = raw_score / absolute_score        
+                    
+        return raw_score

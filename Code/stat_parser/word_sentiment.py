@@ -1,19 +1,21 @@
 from SWNReader import *
-
+from nltk.corpus import stopwords
+stopset = set(stopwords.words('english'))
 
 import re
-regexp_not = "(?:^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$)|n't"
+
 regexp_clause = "[.:;!?]"
 
-def word_senti(current_word, previous_word_inc_val):
-
-    s = get_scores('SentiWordNet.txt',current_word)
+def get_text_lexicon(current_word, tag, previous_word_inc_val):
+    s = get_scores('SentiWordNet.txt',current_word, tag)
     t = previous_word_inc_val
     if t != 0:
         s = t*s
     if current_word.isupper():
         s = s*2   
     return s 
+
+
 
 def get_inc_value(word):
     f = open('Incremetors.txt')
@@ -25,28 +27,58 @@ def get_inc_value(word):
             return float(cols[1])
         else:
             return 0
-            
-def negation(chunked):
+
+def get_tag(pos_tag):
+    regexp_noun = r'NN(S|P|PS)?|PRP\$?'
+    if re.match(regexp_noun, pos_tag):
+        return 'n'
     
-    neg_track = []
+    regexp_verb = r'VB(D|G|N|P|Z)?'
+    if re.match(regexp_verb, pos_tag):
+        return 'v'
 
+    regexp_adj = r'JJ(R|S)?'
+    if re.match(regexp_adj,pos_tag):
+        return 'a'
 
-    for chunked_sent in chunked:
-        neg_sent = []
-        prev_word = None
-        flag = 1;
-        prev_inc_val = 0
+    regexp_adverb = r'RB(R|S)?'
+    if re.match(regexp_adverb, pos_tag):
+        return 'r'               
 
-        for current_word in chunked_sent:
+    if pos_tag == 'FW':
+        return 'FW'
+
+def negation(chunked):
+    regexp_not = "(?:^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$)|n't"
+    
+
+    neg_sent = []
+    prev_word = None
+    flag = 1;
+    prev_inc_val = 0
+    text_count = 0
+
+    for current_word_tuple in chunked:
+        current_word = current_word_tuple[0]
+        current_word_tag = current_word_tuple[1]
+        current_word_tag = get_tag(current_word_tag)
+
+        global stopset
+        if current_word not in stopset:   
             t = flag;
             if t==0:
-                t = -1
-            t = t * word_senti(current_word, prev_inc_val)
-            neg_sent.append((current_word , t))
-            if re.search(regexp_not, current_word): #some problem here
-                flag = (flag + 1) % 2;
-            prev_word = current_word
-            prev_inc_val = get_inc_value(prev_word)  
-        neg_track.append(neg_sent)
-    #print neg_track
-    return neg_track 
+                t = -1 
+            t = t * get_text_lexicon(current_word, current_word_tag, prev_inc_val)
+            if t != 0:
+                text_count += 1
+        else:
+            t = 0
+        neg_sent.append((current_word , t))
+        if re.search(regexp_not, current_word): 
+            flag = (flag + 1) % 2;
+        prev_word = current_word
+        prev_inc_val = get_inc_value(prev_word)  
+    
+    #print neg_sent
+    return [neg_sent, text_count] 
+

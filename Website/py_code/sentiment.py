@@ -7,7 +7,7 @@ import datetime
 import sys
 import os
 import MySQLdb
-from textblob import TextBlob
+from Final import main_file
 
 def gather_input():
 
@@ -71,9 +71,9 @@ def gather_input():
             ##filter text as many users dont put space after full stop - which is essential to use sentence tokenizer
             data_array[i] = re.sub(r'([\.\?\!])(\w)', r'\1 \2', data_array[i])
             
-            blob = TextBlob(data_array[i])
-            blob_sentiment = int(blob.sentiment.polarity*1000)/1000.0
-            sql = "INSERT INTO Phrases(Phrase,Sentiment,Location,Date) VALUES (\""+data_array[i]+"\", "+str(blob_sentiment)+", \""+location_array[i]+"\", \""+str(date)+"\")"
+            custom_sentiment = main_file.get_sentiment(data_array[i])            
+            
+            sql = "INSERT INTO Phrases(Phrase,Sentiment,Location,Date) VALUES (\""+data_array[i]+"\", "+str(custom_sentiment)+", \""+location_array[i]+"\", \""+str(date)+"\")"
             cur.execute(sql)
 
             ## tokenize the tweets, for sentiment analysis
@@ -83,7 +83,7 @@ def gather_input():
                 ##run through the whiteList array, for each find count, add count, sentiment to array
                 for word in white_list:
                     if((sentences[0].lower()).find(word[0])!=-1):
-                        word[1]=word[1]+blob_sentiment
+                        word[1]=word[1]+custom_sentiment
                         word[2]=word[2]+1
 
                         
@@ -92,8 +92,8 @@ def gather_input():
                     ##run through the whiteList array, for each find count and sentiment, add count, sentiment to array
                     for word in white_list:
                         if((sentence.lower()).find(word[0])!=-1):
-                            blob = TextBlob(sentence)
-                            word[1]=word[1]+int(blob.sentiment.polarity*1000)/1000.0
+                            custom_sentiment = main_file.get_sentiment(sentence)
+                            word[1]=word[1]+custom_sentiment
                             word[2]=word[2]+1
                             
                            

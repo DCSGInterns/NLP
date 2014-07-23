@@ -185,13 +185,34 @@ def para_senti_score(para, senti_word):
 
 '''
 
-def para_senti_score(para,senti_word):
-    from stat_parser import word_sentiment
-    import sentiment_finding
-    
-    senti_array = word_sentiment.negation(para)
-    sentiment_finding.get_array(senti_array);
-    score = sentiment_finding.sentiment_finding()
+def para_senti_score(sentence,senti_word):
+    from stat_parser import tokenizer
+    tokenized_sent = tokenizer.word_tokenizer(sentence)
+    print tokenized_sent
+
+    import emoticon_detection
+    senti = emoticon_detection.get_score(tokenized_sent)
+    count = emoticon_detection.get_count()
+     
+
+    if count == 0:
+        import slang_word
+        tokenized_sent = slang_word.replace(tokenized_sent)
+
+        from nltk.tag import pos_tag
+        tagged_sent = pos_tag(tokenized_sent)
+
+        from stat_parser import word_sentiment
+        senti_array = word_sentiment.negation(tagged_sent)
+        #print senti_array
+
+        import sentiment_finding
+        sentiment_finding.get_array(senti_array[0]);
+        score = sentiment_finding.sentiment_finding(senti_array[1])
+
+    else:
+        score = senti/count
+
     return score
 
 

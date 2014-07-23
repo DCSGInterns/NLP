@@ -1,9 +1,10 @@
-Incremetors and Decrementors
-Clause
-noun adj verb relation
-performance
-sarcasm
-
-
+Clause					Interjections
+noun adj verb relation			Smileys - :P 
+performance - Get the efficiency	 
 
 Try using drt
+
+Dynamic Aspect extraction
+Sentence- phrases 			Conjuction Rules
+
+MAchine learning maximum entropy classifiers
