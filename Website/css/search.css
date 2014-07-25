@@ -1,0 +1,22 @@
+#search_panel, #answer_panel {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  margin: 30px auto;
+  width : 50%;  
+}
+
+#submit {
+ position: relative;
+ margin-top: 10px;
+ left:25%;
+ width: 100px;
+}
+
+#content_wrapper_search > form > div {
+    margin: 10px;
+}
+
+#submit {
+    position: relative;
+    left: 45%;
+}

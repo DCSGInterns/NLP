@@ -1,0 +1,21 @@
+#phrases>div>.row> div
+{
+ padding : 0.5%;
+ cursor: auto;
+}
+#tweet_content {
+ color: black;
+}
+#phrases > div > .row:nth-child(2n) {
+ position: relative;
+ left: 5%;
+ margin: 10px 0px;
+}
+#phrases > #phrase_ctrl > div {
+ left: 25%;
+}
+#phrases > #tweets {
+ color : white;
+ font-size: 17px;
+ font-family: 'Open Sans';
+}
