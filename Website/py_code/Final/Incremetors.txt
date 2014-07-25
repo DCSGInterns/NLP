@@ -1,5 +1,0 @@
-too	1.4	i
-very	1.5	i
-sorely	1.5	i
-barely	0.2	d
-little	0.2	d
