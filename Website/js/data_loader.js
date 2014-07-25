@@ -7,6 +7,7 @@ var sort_s_d = 0;
 var sort_c_a = 0;
 var sort_c_d = 0;
 
+
 function displayJSON(jsonObj) { 
     var x = document.getElementById("tweet_content");
     x.innerHTML = "";
@@ -22,25 +23,42 @@ function displayJSON(jsonObj) {
         for (j = 0; j < 3; j++) {
 
             javascript = "onclick=\"redirect(\'"+jsonObj[i * 4 + j].noun+"\')\"";
-            if(jsonObj[i * 4 + j].sentiment < -0.5)
-                style = "style=\"background-color:#FF3333;\"";
-            else if(jsonObj[i * 4 + j].sentiment >= -0.5 && jsonObj[i * 4 + j].sentiment< 0.0)
-                style = "style=\"background-color:#FFB84D;\"";
-            else if(jsonObj[i * 4 + j].sentiment >= 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
-                style = "style=\"background-color:#8AE62E;\"";
-            else
-                style = "style=\"background-color:#66C266;\"";
+
+            if(jsonObj[i * 4 + j].sentiment <= -0.75)
+                style = "style=\"background-color:#f75739;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.75 && jsonObj[i * 4 + j].sentiment <= -0.5)
+                style = "style=\"background-color:#db6c51;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.5 && jsonObj[i * 4 + j].sentiment <= -0.25)
+                style = "style=\"background-color:#fc963a;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.25 && jsonObj[i * 4 + j].sentiment < 0)
+                style = "style=\"background-color:#ebbf48;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0 && jsonObj[i * 4 + j].sentiment< 0.25)
+                style = "style=\"background-color:#b4ea1c;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.25 && jsonObj[i * 4 + j].sentiment< 0.5)
+                style = "style=\"background-color:#70ef4d;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.5 && jsonObj[i * 4 + j].sentiment< 0.75)
+                style = "style=\"background-color:#4ce85a;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.75 && jsonObj[i * 4 + j].sentiment<= 1)
+                style = "style=\"background-color:#30f17c;\"";
 
             row_content = row_content + "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\"" +style+javascript+">" + jsonObj[i * 4 + j].noun + "<br/>S : " + jsonObj[i * 4 + j].sentiment + "<br/>C : " + jsonObj[i * 4 + j].count + "</div>"
         }
-        if(jsonObj[i * 4 + j].sentiment < -0.5)
-                style = "style=\"background-color:#FF3333;\"";
-            else if(jsonObj[i * 4 + j].sentiment >= -0.5 && jsonObj[i * 4 + j].sentiment< 0.0)
-                style = "style=\"background-color:#FFB84D;\"";
-            else if(jsonObj[i * 4 + j].sentiment >= 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
-                style = "style=\"background-color:#8AE62E;\"";
-            else
-                style = "style=\"background-color:#66C266;\"";
+        if(jsonObj[i * 4 + j].sentiment <= -0.75)
+                style = "style=\"background-color:#f75739;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.75 && jsonObj[i * 4 + j].sentiment <= -0.5)
+                style = "style=\"background-color:#db6c51;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.5 && jsonObj[i * 4 + j].sentiment <= -0.25)
+                style = "style=\"background-color:#fc963a;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.25 && jsonObj[i * 4 + j].sentiment <= 0)
+                style = "style=\"background-color:#ebbf48;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0 && jsonObj[i * 4 + j].sentiment< 0.25)
+                style = "style=\"background-color:#b4ea1c;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.25 && jsonObj[i * 4 + j].sentiment< 0.5)
+                style = "style=\"background-color:#70ef4d;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.5 && jsonObj[i * 4 + j].sentiment< 0.75)
+                style = "style=\"background-color:#4ce85a;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.75 && jsonObj[i * 4 + j].sentiment<= 1)
+                style = "style=\"background-color:#30f17c;\"";
 
         javascript = "onclick=\"redirect(\'"+jsonObj[i * 4 + j].noun+"\')\"";
 
@@ -53,14 +71,22 @@ function displayJSON(jsonObj) {
 
         javascript = "onclick=\"redirect(\'"+jsonObj[i * 4 + j].noun+"\')\"";
 
-        if(jsonObj[i * 4 + j].sentiment < -0.5)
-                style = "style=\"background-color:#FF3333;\"";
-            else if(jsonObj[i * 4 + j].sentiment >= -0.5 && jsonObj[i * 4 + j].sentiment< 0.0)
-                style = "style=\"background-color:#FFB84D;\"";
-            else if(jsonObj[i * 4 + j].sentiment >= 0.0 && jsonObj[i * 4 + j].sentiment < 0.5)
-                style = "style=\"background-color:#8AE62E;\"";
-            else
-                style = "style=\"background-color:#66C266;\"";
+        if(jsonObj[i * 4 + j].sentiment <= -0.75)
+                style = "style=\"background-color:#f75739;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.75 && jsonObj[i * 4 + j].sentiment <= -0.5)
+                style = "style=\"background-color:#db6c51;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.5 && jsonObj[i * 4 + j].sentiment <= -0.25)
+                style = "style=\"background-color:#fc963a;\"";
+            else if(jsonObj[i * 4 + j].sentiment > -0.25 && jsonObj[i * 4 + j].sentiment <= 0)
+                style = "style=\"background-color:#ebbf48;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0 && jsonObj[i * 4 + j].sentiment< 0.25)
+                style = "style=\"background-color:#b4ea1c;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.25 && jsonObj[i * 4 + j].sentiment< 0.5)
+                style = "style=\"background-color:#70ef4d;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.5 && jsonObj[i * 4 + j].sentiment< 0.75)
+                style = "style=\"background-color:#4ce85a;\"";
+            else if(jsonObj[i * 4 + j].sentiment >= 0.75 && jsonObj[i * 4 + j].sentiment<= 1)
+                style = "style=\"background-color:#30f17c;\"";
 
 
         row_content = row_content + "<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\"" +style+javascript+">" + jsonObj[i * 4 + j].noun + "<br/>S : " + jsonObj[i * 4 + j].sentiment + "<br/>C : " + jsonObj[i * 4 + j].count + "</div>"
@@ -210,7 +236,7 @@ function loadJSON(value){
             // Javascript function JSON.parse to parse JSON data
             window.jsonObj_main = JSON.parse(http_request.responseText);
             window.jsonObj = jsonObj_main;
-            displayJSON(jsonObj);
+            filter_JSON()
         }
 
     }

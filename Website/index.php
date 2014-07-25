@@ -12,8 +12,10 @@
 	<!-- Specific Styling -->
 	<link href="css/body.css" rel="stylesheet"  type="text/css">
 
-    <script src="js/data_loader.js" type="text/javascript"></script>
     <script src="js/filter.js" type="text/javascript"></script>
+    <script src="js/data_loader.js" type="text/javascript"></script>
+    <script src="js/google_locater.js" type="text/javascript"></script>
+    
 </head>
 
 <body onload="loadJSON(180)">

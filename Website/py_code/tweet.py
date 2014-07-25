@@ -7,6 +7,8 @@ import datetime
 def tweet_sentiment():
     
     keyword = sys.argv[1]
+    keyword_array = keyword.split('_');
+    keyword = " ".join(keyword_array)
     max_sentiment = float(sys.argv[2])
     min_sentiment = float(sys.argv[3])
     date_diff = int(sys.argv[4])
@@ -18,7 +20,7 @@ def tweet_sentiment():
     ##fetch sentiment according to the values entered
     db = MySQLdb.connect(host="localhost",user="InsightsUls0k",passwd="{2qGq(22+5iU",db="Insights")
     cur = db.cursor()
-    sql = "SELECT `Phrase`,`Sentiment`,`Date` FROM Phrases WHERE `Date`>'"+str(barrier_date)+"' AND `Sentiment`>="+str(min_sentiment)+" AND Sentiment<="+str(max_sentiment)+" ORDER BY `Date` DESC LIMIT 100;"
+    sql = "SELECT `Phrase`,`Sentiment`,`Date` FROM Phrases WHERE `Date`>'"+str(barrier_date)+"' AND `Sentiment`>="+str(min_sentiment)+" AND Sentiment<="+str(max_sentiment)+" ORDER BY `Date` DESC LIMIT 200;"
     cur.execute(sql)
 
     json_array = []

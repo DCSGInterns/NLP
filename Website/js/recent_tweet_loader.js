@@ -5,22 +5,32 @@ function displayJSON(jsonObj)
 {
     var x = document.getElementById("tweets");
     x.innerHTML = "";
-
     if (jsonObj.length == 0) {
+        
         x.innerHTML = "<div style=\"position:relative;top:50px;width:200px;margin:0px auto;font-family:'Open Sans';color:grey\"> No Results to display </div>";
         return;
     }
 
+   
     for (i = 0; i < jsonObj.length; i++) {
-        if (jsonObj[i].sentiment < -0.5)
-            style = "style=\"background-color:#FF3333;\"";
-        else if (jsonObj[i].sentiment >= -0.5 && jsonObj[i].sentiment < 0.0)
-            style = "style=\"background-color:#FFB84D;\"";
-        else if (jsonObj[i].sentiment >= 0.0 && jsonObj[i].sentiment < 0.5)
-            style = "style=\"background-color:#8AE62E;\"";
-        else
-            style = "style=\"background-color:#66C266;\"";
 
+        if(jsonObj[i].sentiment <= -0.75)
+                style = "style=\"background-color:#f75739;\"";
+            else if(jsonObj[i].sentiment > -0.75 && jsonObj[i].sentiment <= -0.5)
+                style = "style=\"background-color:#db6c51;\"";
+            else if(jsonObj[i].sentiment > -0.5 && jsonObj[i].sentiment <= -0.25)
+                style = "style=\"background-color:#fc963a;\"";
+            else if(jsonObj[i].sentiment > -0.25 && jsonObj[i].sentiment <= 0)
+                style = "style=\"background-color:#ebbf48;\"";
+            else if(jsonObj[i].sentiment >= 0 && jsonObj[i].sentiment< 0.25)
+                style = "style=\"background-color:#b4ea1c;\"";
+            else if(jsonObj[i].sentiment >= 0.25 && jsonObj[i].sentiment< 0.5)
+                style = "style=\"background-color:#70ef4d;\"";
+            else if(jsonObj[i].sentiment >= 0.5 && jsonObj[i].sentiment< 0.75)
+                style = "style=\"background-color:#4ce85a;\"";
+            else if(jsonObj[i].sentiment >= 0.75 && jsonObj[i].sentiment<= 1)
+                style = "style=\"background-color:#30f17c;\"";
+            
         x.innerHTML = x.innerHTML + "<div class=\"row\"><div class=\"col-lg-11 col-md-11 col-sm-11 col-xs-11\"" + style + ">" + jsonObj[i].text + "</div></div>";
     }
 
